@@ -1,9 +1,9 @@
 CREATE TABLE Path
 (
   PathID INT NOT NULL,
-  Station_First INT NOT NULL,
-  Station_Second INT NOT NULL,
-  Time INT NOT NULL,
+  Station_First VARCHAR(255) NOT NULL,
+  Station_Second VARCHAR(255) NOT NULL,
+*  Time TIME() NOT NULL,
   PRIMARY KEY (PathID)
 );
 
@@ -17,7 +17,7 @@ CREATE TABLE Staff
 CREATE TABLE Driver
 (
   StaffID INT NOT NULL,
-  Name INT NOT NULL,
+  Name VARCHAR(255) NOT NULL,
   Age INT NOT NULL,
   LicenseID INT NOT NULL,
   PRIMARY KEY (StaffID)
@@ -26,7 +26,7 @@ CREATE TABLE Driver
 CREATE TABLE Host
 (
   StaffID INT NOT NULL,
-  Name INT NOT NULL,
+  Name VARCHAR(255) NOT NULL,
   Age INT NOT NULL,
   PRIMARY KEY (StaffID)
 );
@@ -34,7 +34,7 @@ CREATE TABLE Host
 CREATE TABLE Stationer
 (
   StaffID INT NOT NULL,
-  Name INT NOT NULL,
+  Name VARCHAR(255) NOT NULL,
   Age INT NOT NULL,
   PRIMARY KEY (StaffID)
 );
@@ -43,36 +43,36 @@ CREATE TABLE Station
 (
   StationID INT NOT NULL,
   CityID INT NOT NULL,
-  Name INT NOT NULL,
-  Bay INT NOT NULL,
+  Name VARCHAR(255) NOT NULL,
+ * Bay VARCHAR(255) NOT NULL,
   PRIMARY KEY (StationID)
 );
 
 CREATE TABLE BusType
 (
   TypeID INT NOT NULL,
-  Name INT NOT NULL,
+  Name VARCHAR(255) NOT NULL,
   PRIMARY KEY (TypeID)
 );
 
 CREATE TABLE PaymentType
 (
   TypeID INT NOT NULL,
-  Name INT NOT NULL,
+  Name VARCHAR(255) NOT NULL,
   PRIMARY KEY (TypeID)
 );
 
 CREATE TABLE Model
 (
   ModelID INT NOT NULL,
-  Name INT NOT NULL,
+  Name VARCHAR(255) NOT NULL,
   PRIMARY KEY (ModelID)
 );
 
 CREATE TABLE City
 (
   CityID INT NOT NULL,
-  Name INT NOT NULL,
+  Name VARCHAR(255) NOT NULL,
   StationID INT NOT NULL,
   PRIMARY KEY (CityID),
   FOREIGN KEY (StationID) REFERENCES Station(StationID)
@@ -81,7 +81,7 @@ CREATE TABLE City
 CREATE TABLE UserType
 (
   TypeID INT NOT NULL,
-  Name INT NOT NULL,
+  Name VARCHAR(255) NOT NULL,
   PRIMARY KEY (TypeID)
 );
 
@@ -95,9 +95,9 @@ CREATE TABLE TravelCard
 CREATE TABLE Users
 (
   UserID INT NOT NULL,
-  Name INT NOT NULL,
-  Gender INT NOT NULL,
-  UserType INT NOT NULL,
+  Name VARCHAR(255) NOT NULL,
+  Gender VARCHAR(255) NOT NULL,
+*  UserType VARCHAR(255) NOT NULL,
   PRIMARY KEY (UserID),
   FOREIGN KEY (UserType) REFERENCES UserType(TypeID)
 );
@@ -105,8 +105,8 @@ CREATE TABLE Users
 CREATE TABLE Log
 (
   LogID INT NOT NULL,
-  Description INT NOT NULL,
-  Date INT NOT NULL,
+*  Description TEXT NOT NULL,
+*  Date DATE NOT NULL,
   PRIMARY KEY (LogID)
 );
 
@@ -114,16 +114,16 @@ CREATE TABLE Route
 (
   RouteID INT NOT NULL,
   StationID INT NOT NULL,
-  StationOrder INT NOT NULL
+*  StationOrder VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Bus
 (
   BusID INT NOT NULL,
-  Plate INT NOT NULL,
+  Plate VARCHAR(255) NOT NULL,
   Capacity INT NOT NULL,
-  BusType INT NOT NULL,
-  Model INT NOT NULL,
+  BusType VARCHAR(255) NOT NULL,
+  Model VARCHAR(255) NOT NULL,
   PRIMARY KEY (BusID),
   FOREIGN KEY (BusType) REFERENCES BusType(TypeID),
   FOREIGN KEY (Model) REFERENCES Model(ModelID),
@@ -133,7 +133,7 @@ CREATE TABLE Bus
 CREATE TABLE Customer
 (
   Name INT NOT NULL,
-  Gender INT NOT NULL,
+  Gender VARCHAR(255) NOT NULL,
   TCID INT NOT NULL,
   TravelCardID INT NOT NULL,
   PRIMARY KEY (TCID),
@@ -143,9 +143,9 @@ CREATE TABLE Customer
 
 CREATE TABLE CreditCard
 (
-  CardName INT NOT NULL,
+  CardName VARCHAR(255) NOT NULL,
   CardNumber INT NOT NULL,
-  ExpirationDate INT NOT NULL,
+ * ExpirationDate DATE NOT NULL,
   SecurityNumber INT NOT NULL,
   TCID INT NOT NULL,
   FOREIGN KEY (TCID) REFERENCES Customer(TCID),
@@ -156,8 +156,8 @@ CREATE TABLE CreditCard
 CREATE TABLE Tour
 (
   TourID INT NOT NULL,
-  TourDate INT NOT NULL,
-  DepartureTime INT NOT NULL,
+  TourDate DATE NOT NULL,
+  DepartureTime TIME NOT NULL,
   DepartureStationID INT NOT NULL,
   ArrivalStationID INT NOT NULL,
   RouteID INT NOT NULL,
@@ -171,10 +171,10 @@ CREATE TABLE Ticket
   TCID INT NOT NULL,
   SeatNumber INT NOT NULL,
   ReferenceNumber INT NOT NULL,
-  PaymentDue INT NOT NULL,
+  PaymentDue DATE NOT NULL,
   Price INT NOT NULL,
   TourID INT NOT NULL,
-  PaymentType INT NOT NULL,
+  PaymentType VARCHAR(255) NOT NULL,
   PRIMARY KEY (ReferenceNumber),
   FOREIGN KEY (TourID) REFERENCES Tour(TourID),
   FOREIGN KEY (PaymentType) REFERENCES PaymentType(TypeID)
