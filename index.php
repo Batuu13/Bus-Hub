@@ -1,27 +1,25 @@
 ﻿<?php
 include('layout/header.php');
 ?>
-<link href="style/css/datepicker3.css" rel="stylesheet">
-<link href="style/css/styles.css" rel="stylesheet">
-<div class="container-fluid" style="width:70%;height:500px;">
-<div class="panel panel-orange">
+
+<div class="panel panel-blue">
   <div class="panel-body"> 
     	<div class="row"> <!-- Row -->
-          <div class="col-sm-6" > <!-- Places -->
+          <div class="col-sm-6"> <!-- Places -->
           
           <form class="form-vertical" style="margin-left:40px; ">
   			<div class="form-group">
           		<div class="row"> <!-- From -->
-                    <div class="input-group input-group-lg">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Departure</label>
-                      <select class="form-control input-lg" style="min-width:250px;">...</select>
+                    <div class="input-group input-group-lg col-sm-10">
+                    <label  class="control-label"><h2>Departure</h2></label>
+                      <select class="form-control input-lg" >...</select>
                     </div>
                 </div> 
            
                 <div class="row"> <!-- To -->
-                    <div class="input-group input-group-lg">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Destination</label>
-                      <select class="form-control input-lg" style="min-width:250px;max">...</select>
+                    <div class="input-group input-group-lg col-sm-10">
+                    <label  class="control-label"><h2>Destination</h2></label>
+                      <select class="form-control input-lg" >...</select>
                     </div>
                 </div> <!-- To -->
               </div>
@@ -38,10 +36,13 @@ include('layout/header.php');
         </div> <!-- Row -->
   </div>
 </div>
-</div>
-	<script src="style/js/jquery-1.11.1.min.js"></script>
-	<script src="style/js/bootstrap.min.js"></script>
+
+ </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
 <script src="style/js/bootstrap-datepicker.js"></script>
+	
 	<script>
 		$('#calendar').datepicker({
 		});
