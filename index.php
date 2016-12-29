@@ -7,7 +7,7 @@ include('layout/header.php');
     	<div class="row"> <!-- Row -->
           <div class="col-sm-6"> <!-- Places -->
           
-          <form class="form-vertical" style="margin-left:40px; ">
+          <form class="form-vertical" style="margin-left:40px;">
   			<div class="form-group">
           		<div class="row"> <!-- From -->
                     <div class="input-group input-group-lg col-sm-10">

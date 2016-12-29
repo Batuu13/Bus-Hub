@@ -1,15 +1,9 @@
 ﻿<?php
-//include('password.php');
+
 abstract class User{
 
-    private $_db;
-	public $name;
-	public $surname;
-	public $TCID;
-	public $gender;
-	public $TravelCardID;
 
-   abstract protected function getValues();
+   abstract protected function getValues($TCID);
     
 		
 	function log($log,$id){
@@ -24,14 +18,14 @@ abstract class User{
 			));		
 	}
 	
-	function get_user_hash($username){	
-
+	function get_user_hash($UserID){	
+	//todo encrypt
 		try {
-			$stmt = $this->_db->prepare('SELECT password FROM members WHERE username = :username AND active="Yes" ');
-			$stmt->execute(array('username' => $username));
+			$stmt = $this->_db->prepare('SELECT Password FROM users WHERE UserID = :UserID');
+			$stmt->execute(array('UserID' => $UserID));
 			
 			$row = $stmt->fetch();
-			return $row['password'];
+			return $row['Password'];
 
 		} catch(PDOException $e) {
 		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
@@ -39,10 +33,10 @@ abstract class User{
 	}
 
 	function login($username,$password){
-	$this->name = $username;
+	
 		$hashed = $this->get_user_hash($username);
-		
-		if($this->password_verify($password,$hashed) == 1){
+		echo $password . " - " . $hashed;
+		if($password === $hashed){
 		    
 		    $_SESSION['loggedin'] = true;
 			$_SESSION['username'] = $username;
@@ -54,9 +48,9 @@ abstract class User{
 		session_destroy();
 	}
 	
-	abstract function checkPass($username,$password){}
 	
-	function is_logged_in(){
+	
+	public function is_logged_in(){
 		if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
 			return true;
 		}		
