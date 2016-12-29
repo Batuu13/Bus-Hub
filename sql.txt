@@ -1,9 +1,9 @@
 CREATE TABLE Path
 (
   PathID INT NOT NULL,
-  Station_First VARCHAR(255) NOT NULL,
-  Station_Second VARCHAR(255) NOT NULL,
-  Time TIME() NOT NULL,
+  Station_First INT NOT NULL,
+  Station_Second INT NOT NULL,
+  Time TIME NOT NULL,
   PRIMARY KEY (PathID)
 );
 
