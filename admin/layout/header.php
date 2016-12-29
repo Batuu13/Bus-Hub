@@ -7,7 +7,7 @@
 
 <link href="../style/css/bootstrap.min.css" rel="stylesheet">
 <link href="../style/css/datepicker3.css" rel="stylesheet">
-<link href="../style/css/styles.css" rel="stylesheet">
+<link href="style/css/styles.css" rel="stylesheet">
 
 <!--Icons-->
 <script src="../style/js/lumino.glyphs.js"></script>
@@ -48,8 +48,8 @@
 		
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<ul class="nav menu">
-			<li><a href="main.jsp"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard </a></li>
-		
+			<li><a href=""><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard </a></li>
+			<li><a href="addBusModel.php"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Add Bus Model </a></li>
 			
 			<li class="parent ">
 				<a data-toggle="collapse" href="#sub-item-2">
@@ -57,11 +57,11 @@
 				</a>
 				<ul class="children collapse" id="sub-item-2">
 					<li class="">
-						<a class="" href="clusters.jsp">
+						<a class="" href="">
 							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Cluster List
 						</a>
 					</li>
-					<li class="<%= active("addCluster.jsp") %>">
+					<li class="">
 						<a class="" href="addCluster.jsp">
 							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Add Cluster
 						</a>

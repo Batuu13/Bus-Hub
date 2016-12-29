@@ -1,6 +1,7 @@
 ﻿<?php
-class Admin{
-	private $_db;
+
+class Admin extends User{
+	protected $_db;
 	public $userID;
 	public $userType;
 	public $name;
@@ -15,7 +16,7 @@ class Admin{
 			}
 		}
 	
-		private function getValues($userID)
+		protected function getValues($userID)
 		{
 		
 		$stmt = $this->_db->prepare('SELECT * FROM Users WHERE userID = :userID');
@@ -40,5 +41,6 @@ class Admin{
 				return false;
 		}
 		
+	
 }
 ?>

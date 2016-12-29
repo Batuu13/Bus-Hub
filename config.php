@@ -9,7 +9,7 @@ date_default_timezone_set('Europe/London');
 define('DBHOST','localhost');
 define('DBUSER','admin');
 define('DBPASS','123321');
-define('DBNAME','batuhany_ikinciel');
+define('DBNAME','bus');
 
 //application address
 define('DIR','http://domain.com/');
@@ -28,7 +28,9 @@ try {
 }
 
 //include the user class, pass in the database connection
+include('classes/user.php');
 include('classes/customer.php');
+include('classes/admin.php');
 $user = new Customer($db);
 $admin = new Admin($db);
 	

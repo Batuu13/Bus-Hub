@@ -1,5 +1,5 @@
 ﻿<?php
-include('password.php');
+
 class Customer extends User{
 
     private $_db;
@@ -9,8 +9,8 @@ class Customer extends User{
 	public $gender;
 	public $TravelCardID;
 
-    function __construct($db){
-    	parent::__construct();
+  	function __construct($db){
+    	
     
     	$this->_db = $db;
 		if(isset($_SESSION['username'])){
@@ -19,7 +19,7 @@ class Customer extends User{
     }
 		
 	
-	private function getValues($TCID){
+	protected function getValues($TCID){
 		
 		$stmt = $this->_db->prepare('SELECT * FROM customer WHERE TCID = :TCID');
 			$stmt->execute(array('TCID' => $TCID));

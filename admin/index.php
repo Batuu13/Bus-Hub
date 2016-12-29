@@ -1,7 +1,7 @@
 ﻿<?php
-include()
+include('../config.php');
 include('layout/header.php');
-#if( !$admin->is_logged_in() ){ header('Location: login.php'); }
+if( !$admin->is_logged_in() ){ header('Location: login.php'); }
 ?>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
 		<div class="row">
