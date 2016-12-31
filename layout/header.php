@@ -1,4 +1,7 @@
-﻿<!doctype html>
+﻿<?php
+include('config.php');
+?>
+<!doctype html>
 <html>
 
 <head>
