@@ -1,35 +1,26 @@
-﻿<?php
+<?php
 include('../config.php');
 include('layout/header.php');
 if( !$admin->is_logged_in() ){ header('Location: login.php'); }
-
 if(isset($_POST['submit']))
 {
 	$output = "";
 	$error = 0;
-	$modelName = $_POST['modelname'];
-	if(strlen($modelName) < 3)
-	{
-		$error = 1;
-		$output = "Name is too short";
-		
-	}	
-	else
-	{
+
+	
 		// db insert
 		try{
-		$stmt = $db->prepare('INSERT INTO model (Name) VALUES (:name)');
-		$stmt->execute(array('name' => $modelName));
-		$output = "Model Added";
+		$stmt = $db->prepare('INSERT INTO stationer (Name,Age) VALUES (:name,:age)');
+		$stmt->execute(array('name' => $_POST['name'],   'age' => $_POST['age']));
+		$output = "Stationer added successfully!";
+		
 		}catch(PDOException $e) {
 	//show error
     echo '<p class="bg-danger">'.$e->getMessage().'</p>';
     exit;
-}
+
 	}
 }
-
-
 ?>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
 		<?php
@@ -48,14 +39,17 @@ if(isset($_POST['submit']))
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Add Bus Model</div>
+					<div class="panel-heading">Stationer Panel</div>
 					<div class="panel-body">
 						
                         <form method="post">
                           <div class="form-group">
-                            <label>Model Name</label>
-                            <input class="form-control" name="modelname" placeholder="Model Name">
+                            <label>name</label>
+                            <input class="form-control" name="name" placeholder="name">
                           </div>
+						  <div class="form-group">
+                            <label>age</label>
+                            <input class="form-control" name="age" placeholder="age">
                           <button type="submit" class="btn btn-default" name="submit">Submit</button>
                         </form>
                         

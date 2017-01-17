@@ -11,21 +11,20 @@ class Admin extends User{
 		function __construct($db)
 		{
 			$this->_db = $db;
-			if(isset($_SESSION['admin'])){
-			$this->getValues($_SESSION['admin']);
+			if(isset($_SESSION['userID'])){
+			$this->getValues($_SESSION['userID']);
 			}
 		}
-	
+		
 		protected function getValues($userID)
 		{
 		
 		$stmt = $this->_db->prepare('SELECT * FROM Users WHERE userID = :userID');
 			$stmt->execute(array('userID' => $userID));
 			$row = $stmt->fetch();
-			$this->userType = $row['userType'];
-			$this->name = $row['name'];
-			$this->birthDate = $row['birthDate'];
-			$this->gender = $row['gender']; //TODO Transform gender into string(Male/Female)
+			$this->userType = $row['UserType'];
+			$this->name = $row['Name'];
+			$this->gender = $row['Gender']; //TODO Transform gender into string(Male/Female)
 		}
 		public function checkPass($userID,$password)
 		{
@@ -40,7 +39,36 @@ class Admin extends User{
 			else
 				return false;
 		}
+		function get_user_hash($UserID){	
+	//todo encrypt
+		try {
+			$stmt = $this->_db->prepare('SELECT Password FROM users WHERE UserID = :UserID');
+			$stmt->execute(array('UserID' => $UserID));
+			
+			$row = $stmt->fetch();
+			return $row['Password'];
+
+		} catch(PDOException $e) {
+		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
+		}
+	}
+
+	function login($userID,$password){
+	
+		$hashed = $this->get_user_hash($userID);
 		
+		if($password === $hashed){
+		    
+		    $_SESSION['aloggedin'] = true;
+			$_SESSION['userID'] = $userID;
+		    return true;
+		} 	
+	}
+	public function is_logged_in(){
+		if(isset($_SESSION['aloggedin']) && $_SESSION['aloggedin'] == true){
+			return true;
+		}		
+	}
 	
 }
 ?>
